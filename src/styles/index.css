@@ -75,6 +75,15 @@
   }
 }
 
+/* Safari date/select input fixes */
+input[type="date"],
+select {
+  color-scheme: dark;
+  min-height: 48px;
+  font-size: 16px;
+  -webkit-appearance: none;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
