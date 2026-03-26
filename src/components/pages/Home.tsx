@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Play, Code2, Palette, Sparkles } from "lucide-react";
@@ -58,16 +59,23 @@ const item = {
 };
 
 export function Home() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  const handleVideoLoaded = useCallback(() => {
+    setVideoLoaded(true);
+  }, []);
+
   return (
     <>
       {/* Video + Hero + Pillars shared container */}
       <div className="relative">
         {/* Background layers: video (if set) + aurora blobs */}
-        <YouTubeBackground videoId={YOUTUBE_VIDEO_ID} start={YOUTUBE_START_TIME} />
+        <YouTubeBackground videoId={YOUTUBE_VIDEO_ID} start={YOUTUBE_START_TIME} onLoaded={handleVideoLoaded} />
 
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center">
-          <AuroraScene />
+          {/* Aurora blobs — placeholder while video loads, fades out when video is ready */}
+          {!videoLoaded && <AuroraScene />}
 
           <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
             <motion.div

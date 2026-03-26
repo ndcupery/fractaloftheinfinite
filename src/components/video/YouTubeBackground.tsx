@@ -3,14 +3,16 @@ import { useCallback, useState } from "react";
 interface YouTubeBackgroundProps {
   videoId: string;
   start?: number;
+  onLoaded?: () => void;
 }
 
-export function YouTubeBackground({ videoId, start }: YouTubeBackgroundProps) {
+export function YouTubeBackground({ videoId, start, onLoaded }: YouTubeBackgroundProps) {
   const [loaded, setLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
     setLoaded(true);
-  }, []);
+    onLoaded?.();
+  }, [onLoaded]);
 
   if (!videoId) return null;
 
