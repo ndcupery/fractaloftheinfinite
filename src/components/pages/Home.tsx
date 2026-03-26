@@ -6,8 +6,8 @@ import { YouTubeBackground } from "@/components/video/YouTubeBackground";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
-// Drop your YouTube video ID here (e.g. "dQw4w9WgXcQ")
-const YOUTUBE_VIDEO_ID = "";
+const YOUTUBE_VIDEO_ID = "f-CN8Kjl7FY";
+const YOUTUBE_START_TIME = 161;
 
 const pillars = [
   {
@@ -63,7 +63,7 @@ export function Home() {
       {/* Video + Hero + Pillars shared container */}
       <div className="relative overflow-hidden">
         {/* Background layers: video (if set) + aurora blobs */}
-        <YouTubeBackground videoId={YOUTUBE_VIDEO_ID} />
+        <YouTubeBackground videoId={YOUTUBE_VIDEO_ID} start={YOUTUBE_START_TIME} />
 
         {/* Full-span overlay for video legibility */}
         <div className="absolute inset-0 bg-background/50 pointer-events-none -z-[5]" />
