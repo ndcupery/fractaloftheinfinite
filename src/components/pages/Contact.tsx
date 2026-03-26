@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Send, Mail, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -22,6 +22,17 @@ const socials = [
   },
 ];
 
+const eventTypes = [
+  "Festival",
+  "Concert",
+  "Private Event",
+  "Corporate",
+  "Other",
+];
+
+const inputClass =
+  "w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all";
+
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -38,15 +49,15 @@ export function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
           >
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6">
-              Get in{" "}
-              <span className="gradient-text">Touch</span>
+              Book{" "}
+              <span className="gradient-text">Phazer Visuals</span>
             </h1>
             <p className="text-lg text-text-muted max-w-xl mx-auto leading-relaxed">
-              Have an idea, a question, or just want to say hi? We&apos;d love
-              to hear from you.
+              Bringing immersive live visuals to festivals and events across the
+              Midwest. Let&apos;s make your next event unforgettable.
             </p>
           </motion.div>
         </div>
@@ -56,11 +67,11 @@ export function Contact() {
       <section className="px-6">
         <div className="mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-5 gap-10">
-            {/* Form */}
+            {/* Booking Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
               className="lg:col-span-3"
             >
               <Card className="p-8">
@@ -75,18 +86,18 @@ export function Contact() {
                         <Send size={28} className="text-accent" />
                       </div>
                       <h3 className="text-2xl font-bold mb-2">
-                        Message Sent!
+                        Booking Request Sent!
                       </h3>
                       <p className="text-text-muted">
-                        Thanks for reaching out. We&apos;ll get back to you
-                        soon.
+                        Thanks for reaching out. I&apos;ll get back to you soon
+                        to discuss your event.
                       </p>
                       <Button
                         variant="ghost"
                         className="mt-6"
                         onClick={() => setSubmitted(false)}
                       >
-                        Send another message
+                        Submit another request
                       </Button>
                     </motion.div>
                   ) : (
@@ -100,7 +111,7 @@ export function Contact() {
                             type="text"
                             required
                             placeholder="Your name"
-                            className="w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all"
+                            className={inputClass}
                           />
                         </div>
                         <div>
@@ -111,37 +122,80 @@ export function Contact() {
                             type="email"
                             required
                             placeholder="you@example.com"
-                            className="w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all"
+                            className={inputClass}
                           />
                         </div>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-text mb-2">
-                          Subject
+                          Event Name
                         </label>
                         <input
                           type="text"
                           required
-                          placeholder="What's this about?"
-                          className="w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all"
+                          placeholder="What's the event called?"
+                          className={inputClass}
+                        />
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-text mb-2">
+                            Event Date
+                          </label>
+                          <input
+                            type="date"
+                            required
+                            className={inputClass}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-text mb-2">
+                            Event Type
+                          </label>
+                          <select required className={`${inputClass} appearance-none`}>
+                            <option value="" className="bg-surface-light">
+                              Select type...
+                            </option>
+                            {eventTypes.map((type) => (
+                              <option
+                                key={type}
+                                value={type}
+                                className="bg-surface-light"
+                              >
+                                {type}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-text mb-2">
+                          Event Location
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="City, State or Venue"
+                          className={inputClass}
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-text mb-2">
-                          Message
+                          Additional Details
                         </label>
                         <textarea
-                          required
-                          rows={5}
-                          placeholder="Tell us what you're thinking..."
-                          className="w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all resize-none"
+                          rows={4}
+                          placeholder="Tell me about your event — expected attendance, vibe, stage setup, anything relevant..."
+                          className={`${inputClass} resize-none`}
                         />
                       </div>
 
                       <Button type="submit" size="lg" className="w-full sm:w-auto">
-                        Send Message
+                        Submit Booking Request
                         <Send size={16} />
                       </Button>
                     </form>
@@ -154,20 +208,22 @@ export function Contact() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="lg:col-span-2 space-y-6"
             >
-              {/* Info */}
-              <Card>
+              {/* Availability */}
+              <Card className="border-secondary/20">
                 <CardContent className="space-y-5">
                   <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail size={16} className="text-primary" />
+                    <div className="w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+                      <Calendar size={16} className="text-secondary" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-text">Email</p>
+                      <p className="text-sm font-medium text-text">
+                        Availability
+                      </p>
                       <p className="text-sm text-text-muted">
-                        hello@phazerlabs.com
+                        Now booking for Midwest festival season 2026
                       </p>
                     </div>
                   </div>
@@ -178,7 +234,20 @@ export function Contact() {
                     <div>
                       <p className="text-sm font-medium text-text">Location</p>
                       <p className="text-sm text-text-muted">
-                        The Internet, Earth
+                        Based in the Midwest
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <Mail size={16} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-text">
+                        General Inquiries
+                      </p>
+                      <p className="text-sm text-text-muted">
+                        hello@phazerlabs.com
                       </p>
                     </div>
                   </div>
@@ -189,7 +258,7 @@ export function Contact() {
               <Card>
                 <CardContent>
                   <h3 className="font-semibold text-text mb-4">
-                    Find us online
+                    Find me online
                   </h3>
                   <div className="space-y-3">
                     {socials.map((social) => (

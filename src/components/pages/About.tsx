@@ -7,28 +7,28 @@ const values = [
     icon: Zap,
     title: "Innovation First",
     description:
-      "We don't follow trends — we experiment, iterate, and build what excites us. Every project is a chance to learn something new.",
+      "I don't follow trends — I experiment, iterate, and build what excites me. Every project is a chance to learn something new.",
     color: "text-warm",
   },
   {
     icon: Target,
     title: "Quality Over Quantity",
     description:
-      "Whether it's code, content, or design — we believe in doing fewer things exceptionally well rather than many things mediocrely.",
+      "Whether it's code, content, or design — I believe in doing fewer things exceptionally well rather than many things mediocrely.",
     color: "text-primary",
   },
   {
     icon: Rocket,
     title: "Ship & Iterate",
     description:
-      "Perfect is the enemy of done. We ship fast, gather feedback, and continuously improve. Real-world testing beats theoretical planning.",
+      "Perfect is the enemy of done. I ship fast, gather feedback, and continuously improve. Real-world testing beats theoretical planning.",
     color: "text-accent",
   },
   {
     icon: Heart,
     title: "Community Driven",
     description:
-      "Everything we build and share is for the community. Open source, educational content, and transparent processes are in our DNA.",
+      "Everything I build and share is for the community. Open source, educational content, and transparent processes are in my DNA.",
     color: "text-secondary",
   },
 ];
@@ -70,16 +70,16 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
           >
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6">
               About{" "}
               <span className="gradient-text">Phazer Labs</span>
             </h1>
             <p className="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
-              We&apos;re a creative technology lab born from a passion for
-              building things. Part YouTube channel, part software studio, part
-              experimental playground.
+              A creative technology lab born from a passion for building things.
+              Part YouTube channel, part software studio, part live visual
+              performance — all experimental playground.
             </p>
           </motion.div>
         </div>
@@ -105,12 +105,13 @@ export function About() {
                   channel quickly evolved into something bigger.
                 </p>
                 <p>
-                  Today, we&apos;re a multi-faceted creative lab. We build
-                  software products, create educational content, and take on
-                  creative projects that push us to learn and grow.
+                  Today, it&apos;s a multi-faceted creative lab. I build
+                  software products, create educational content, perform live
+                  visuals at festivals, and take on creative projects that push
+                  me to learn and grow.
                 </p>
                 <p>
-                  Our philosophy is simple — the best way to learn is by doing,
+                  My philosophy is simple — the best way to learn is by doing,
                   and the best way to grow is by sharing what you learn with
                   others.
                 </p>
@@ -150,10 +151,10 @@ export function About() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              Our <span className="text-accent">Values</span>
+              My <span className="text-accent">Values</span>
             </h2>
             <p className="text-text-muted max-w-xl mx-auto">
-              The principles that guide everything we build and create.
+              The principles that guide everything I build and create.
             </p>
           </motion.div>
 
@@ -199,10 +200,10 @@ export function About() {
             className="mb-10"
           >
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-              Our <span className="text-primary">Tech Stack</span>
+              My <span className="text-primary">Tech Stack</span>
             </h2>
             <p className="text-text-muted">
-              The tools and technologies we use to bring ideas to life.
+              The tools and technologies I use to bring ideas to life.
             </p>
           </motion.div>
 
