@@ -1,11 +1,13 @@
 interface YouTubeBackgroundProps {
   videoId: string;
+  start?: number;
 }
 
-export function YouTubeBackground({ videoId }: YouTubeBackgroundProps) {
+export function YouTubeBackground({ videoId, start }: YouTubeBackgroundProps) {
   if (!videoId) return null;
 
-  const src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0`;
+  const startParam = start ? `&start=${start}` : "";
+  const src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0${startParam}`;
 
   return (
     <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none -z-10">
