@@ -17,6 +17,12 @@ export function Footer() {
               About
             </Link>
             <Link
+              to="/gallery"
+              className="hover:text-primary transition-colors"
+            >
+              Gallery
+            </Link>
+            <Link
               to="/contact"
               className="hover:text-primary transition-colors"
             >
