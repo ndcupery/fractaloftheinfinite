@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { Calendar, Circle, Play, X } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Circle, Play, X } from "lucide-react";
 import { ProjectThumbnail } from "@/components/ui/ProjectVisual";
 import { projects, getAllTags, getAllMedia } from "@/data/projects";
 import type { ProjectStatus, FlattenedMediaItem } from "@/data/projects";
@@ -125,10 +124,7 @@ export function Gallery() {
     return () => observer.disconnect();
   }, [hasMore, contentFilter, activeTag]);
 
-  const gridClass =
-    contentFilter === "projects"
-      ? "grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-      : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
+  const gridClass = "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
 
   return (
     <div className="pt-32 pb-20">
@@ -236,7 +232,6 @@ export function Gallery() {
                   <ProjectCard
                     key={`project-${galleryItem.data.slug}`}
                     project={galleryItem.data}
-                    span={contentFilter !== "projects"}
                   />
                 ) : (
                   <MediaCard
@@ -305,68 +300,54 @@ export function Gallery() {
 
 function ProjectCard({
   project,
-  span,
 }: {
   project: (typeof projects)[number];
-  span: boolean;
 }) {
   return (
-    <motion.div
-      variants={item}
-      layout
-      className={span ? "col-span-2 row-span-2" : ""}
-    >
+    <motion.div variants={item} layout>
       <Link
         to="/gallery/$projectSlug"
         params={{ projectSlug: project.slug }}
-        className="block h-full"
+        className="block"
       >
-        <Card className="h-full group cursor-pointer hover:border-primary/20 hover:shadow-[0_0_30px_rgba(0,229,255,0.08)] overflow-hidden">
-          <div className="aspect-video overflow-hidden group-hover:scale-105 transition-transform duration-500">
-            {project.thumbnail ? (
-              <img
-                src={project.thumbnail}
-                alt={project.title}
-                loading="lazy"
-                className="w-full h-full object-cover"
+        <div className="relative aspect-video rounded-xl overflow-hidden group cursor-pointer">
+          {project.thumbnail ? (
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <div className="w-full h-full group-hover:scale-105 transition-transform duration-500">
+              <ProjectThumbnail
+                slug={project.slug}
+                title={project.title}
+                projectType={project.projectType}
+                className="w-full h-full"
               />
-            ) : (
-              <ProjectThumbnail slug={project.slug} title={project.title} className="w-full h-full" />
-            )}
-          </div>
-          <CardHeader>
-            <div className="flex items-center gap-2 mb-2">
-              <Circle
-                size={8}
-                fill="currentColor"
-                className={statusColors[project.status]}
-              />
-              <span className="text-xs text-text-muted capitalize">
-                {project.status}
-              </span>
-              <span className="text-xs text-text-muted flex items-center gap-1 ml-auto">
-                <Calendar size={12} />
-                {project.startDate}
-              </span>
             </div>
-            <CardTitle className="group-hover:text-primary transition-colors">
-              {project.title}
-            </CardTitle>
-          </CardHeader>
-          <CardDescription className="leading-relaxed line-clamp-2">
-            {project.abstract}
-          </CardDescription>
-          <div className="px-6 pb-6 pt-3 flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 rounded-md border border-border text-xs text-text-muted font-mono"
-              >
-                {tag}
-              </span>
-            ))}
+          )}
+
+          {/* Status badge — top left */}
+          <div className="absolute top-2 left-2 px-2 py-1 rounded-full bg-background/60 backdrop-blur-sm flex items-center gap-1.5">
+            <Circle
+              size={6}
+              fill="currentColor"
+              className={statusColors[project.status]}
+            />
+            <span className="text-[10px] text-text-muted capitalize font-medium">
+              {project.status}
+            </span>
           </div>
-        </Card>
+
+          {/* Project name — bottom overlay */}
+          <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-background/80 to-transparent">
+            <span className="text-xs text-text group-hover:text-primary transition-colors font-medium">
+              {project.title}
+            </span>
+          </div>
+        </div>
       </Link>
     </motion.div>
   );

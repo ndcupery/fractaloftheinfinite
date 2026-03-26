@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { vertexShader, fragmentShader } from "@/shaders/projectPattern";
 import { slugToSeed } from "@/lib/shaderSeed";
+import type { ProjectType } from "@/data/projects";
 
 const cache = new Map<string, string>();
 
@@ -9,12 +10,13 @@ function renderToDataURL(
   width: number,
   height: number,
   mode: number,
+  projectType?: ProjectType,
 ): string {
-  const key = `${slug}-${width}x${height}-${mode}`;
+  const key = `${slug}-${width}x${height}-${mode}-${projectType ?? "default"}`;
   const cached = cache.get(key);
   if (cached) return cached;
 
-  const seed = slugToSeed(slug);
+  const seed = slugToSeed(slug, projectType);
 
   const renderer = new THREE.WebGLRenderer({ antialias: false });
   renderer.setSize(width, height);
@@ -34,6 +36,7 @@ function renderToDataURL(
       u_color3: { value: new THREE.Vector3(...seed.colors[2]) },
       u_resolution: { value: new THREE.Vector2(width, height) },
       u_mode: { value: mode },
+      u_style: { value: seed.style },
     },
   });
 
@@ -52,10 +55,10 @@ function renderToDataURL(
   return dataURL;
 }
 
-export function renderHero(slug: string): string {
-  return renderToDataURL(slug, 1920, 800, 0);
+export function renderHero(slug: string, projectType?: ProjectType): string {
+  return renderToDataURL(slug, 1920, 800, 0, projectType);
 }
 
-export function renderThumbnail(slug: string): string {
-  return renderToDataURL(slug, 600, 338, 1);
+export function renderThumbnail(slug: string, projectType?: ProjectType): string {
+  return renderToDataURL(slug, 600, 338, 1, projectType);
 }

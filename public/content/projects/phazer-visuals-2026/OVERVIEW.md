@@ -7,6 +7,7 @@ tags:
   - festival
   - creative-coding
   - projection
+projectType: performance
 status: active
 startDate: 2025-03-01
 ---

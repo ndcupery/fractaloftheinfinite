@@ -64,7 +64,7 @@ export function ProjectDetail() {
           <HeroOverlay project={project} status={status} />
         </div>
       ) : (
-        <ProjectHero slug={project.slug} className="w-full h-[60vh] -mt-[80px]">
+        <ProjectHero slug={project.slug} projectType={project.projectType} className="w-full h-[60vh] -mt-[80px]">
           <HeroOverlay project={project} status={status} />
         </ProjectHero>
       )}
