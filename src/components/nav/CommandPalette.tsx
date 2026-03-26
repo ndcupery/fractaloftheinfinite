@@ -19,9 +19,9 @@ const commands = [
     to: "/about" as const,
   },
   {
-    id: "contact",
-    label: "Contact",
-    description: "Get in touch",
+    id: "booking",
+    label: "Booking",
+    description: "Book Phazer Visuals for your event",
     icon: Mail,
     to: "/contact" as const,
   },
