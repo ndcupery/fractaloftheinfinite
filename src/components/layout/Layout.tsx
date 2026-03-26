@@ -15,7 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
     <div className="relative min-h-screen flex flex-col">
       <Navbar onCommandOpen={() => setIsOpen(true)} />
       <CommandPalette isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
         <motion.main
           key={locationKey}
           initial={{ opacity: 0, y: 20 }}

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Play, Code2, Palette } from "lucide-react";
+import { ArrowRight, Play, Code2, Palette, Sparkles } from "lucide-react";
 import { HeroScene } from "@/components/three/HeroScene";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -10,7 +10,7 @@ const pillars = [
     icon: Play,
     title: "Content Creator",
     description:
-      "Deep-dive tutorials, project builds, and tech explorations on YouTube. Learning by building, one project at a time.",
+      "Deep-dive tutorials, project builds, and tech explorations on YouTube. I learn by building, one project at a time.",
     color: "text-warm",
     borderColor: "hover:border-warm/40 hover:shadow-[0_0_30px_rgba(255,140,0,0.15)]",
   },
@@ -18,7 +18,7 @@ const pillars = [
     icon: Code2,
     title: "Software Builder",
     description:
-      "From concept to deployment — building tools, apps, and platforms that solve real problems with modern tech stacks.",
+      "From concept to deployment — I build tools, apps, and platforms that solve real problems with modern tech stacks.",
     color: "text-primary",
     borderColor: "hover:border-primary/40 hover:shadow-[0_0_30px_rgba(0,229,255,0.15)]",
   },
@@ -29,6 +29,14 @@ const pillars = [
       "Bringing ideas to life through design, development, and creative direction. Where technology meets imagination.",
     color: "text-accent",
     borderColor: "hover:border-accent/40 hover:shadow-[0_0_30px_rgba(57,255,20,0.15)]",
+  },
+  {
+    icon: Sparkles,
+    title: "Live Visuals",
+    description:
+      "Phazer Visuals — immersive live visual performances for festivals and events. Now booking for Midwest festival season.",
+    color: "text-secondary",
+    borderColor: "hover:border-secondary/40 hover:shadow-[0_0_30px_rgba(123,47,190,0.15)]",
   },
 ];
 
@@ -59,7 +67,7 @@ export function Home() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm mb-8">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -74,9 +82,9 @@ export function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-              Phazer Labs is where technology meets creativity. We build
-              software, create content, and push the boundaries of what&apos;s
-              possible.
+              Phazer Labs is where technology meets creativity. I build
+              software, create content, perform live visuals, and push the
+              boundaries of what&apos;s possible.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -88,7 +96,7 @@ export function Home() {
               </Link>
               <Link to="/contact">
                 <Button variant="outline" size="lg">
-                  Get in Touch
+                  Book Phazer Visuals
                 </Button>
               </Link>
             </div>
@@ -123,11 +131,11 @@ export function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              What We <span className="gradient-text">Do</span>
+              What I <span className="gradient-text">Do</span>
             </h2>
             <p className="text-text-muted max-w-xl mx-auto">
-              Three pillars, one mission: push the boundaries of technology and
-              creativity.
+              Four pillars, one mission — pushing the boundaries of technology
+              and creativity.
             </p>
           </motion.div>
 
@@ -136,7 +144,7 @@ export function Home() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {pillars.map((pillar) => (
               <motion.div key={pillar.title} variants={item}>
@@ -179,12 +187,13 @@ export function Home() {
                 Ready to <span className="text-accent">Experiment</span>?
               </h2>
               <p className="text-text-muted max-w-lg mx-auto mb-8">
-                Whether you&apos;re looking to collaborate, learn, or build
-                something new — let&apos;s make it happen.
+                Whether you&apos;re looking to collaborate, book live visuals
+                for your next event, or just want to say hi — let&apos;s make
+                it happen.
               </p>
               <Link to="/contact">
                 <Button size="lg">
-                  Start a Conversation
+                  Book Phazer Visuals
                   <ArrowRight size={18} />
                 </Button>
               </Link>

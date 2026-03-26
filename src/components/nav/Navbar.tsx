@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { to: "/" as const, label: "Home" },
   { to: "/about" as const, label: "About" },
-  { to: "/contact" as const, label: "Contact" },
+  { to: "/contact" as const, label: "Booking" },
 ];
 
 export function Navbar({ onCommandOpen }: { onCommandOpen: () => void }) {

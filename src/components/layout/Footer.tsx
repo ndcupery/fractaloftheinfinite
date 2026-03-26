@@ -20,7 +20,7 @@ export function Footer() {
               to="/contact"
               className="hover:text-primary transition-colors"
             >
-              Contact
+              Booking
             </Link>
           </nav>
           <p className="text-sm text-text-muted">
