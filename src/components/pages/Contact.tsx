@@ -31,7 +31,7 @@ const eventTypes = [
 ];
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl bg-surface-light border border-border text-text placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all";
+  "w-full h-12 px-4 py-3 rounded-xl bg-surface-light border border-border text-text text-base placeholder:text-text-muted/50 outline-none focus:border-primary/50 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] transition-all appearance-none";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -154,7 +154,7 @@ export function Contact() {
                           <label className="block text-sm font-medium text-text mb-2">
                             Event Type
                           </label>
-                          <select required className={`${inputClass} appearance-none`}>
+                          <select required className={inputClass}>
                             <option value="" className="bg-surface-light">
                               Select type...
                             </option>
@@ -190,7 +190,7 @@ export function Contact() {
                         <textarea
                           rows={4}
                           placeholder="Tell me about your event — expected attendance, vibe, stage setup, anything relevant..."
-                          className={`${inputClass} resize-none`}
+                          className={`${inputClass} !h-auto resize-none`}
                         />
                       </div>
 
