@@ -1,4 +1,5 @@
 export type ProjectStatus = "active" | "completed" | "archived";
+export type ProjectType = "3d" | "software" | "performance" | "artwork" | "diy";
 
 export interface ProjectUpdate {
   date: string;
@@ -22,6 +23,7 @@ export interface Project {
   heroImage?: string;
   thumbnail?: string;
   tags: string[];
+  projectType: ProjectType;
   status: ProjectStatus;
   startDate: string;
   updatedDate?: string;
@@ -54,6 +56,7 @@ export const projects: Project[] = [
       "Phazer Visuals is my live visual performance project — I design and perform real-time generative visuals synchronized to music at festivals and events. Using a combination of custom software, MIDI controllers, and projection mapping, each performance is a unique, immersive experience. The 2026 season is focused on the Midwest circuit, bringing laser-reactive particle systems and audio-driven shader art to stages across the region.",
     // heroImage and thumbnail are auto-generated via shader when not provided
     tags: ["live-visuals", "festival", "creative-coding", "projection"],
+    projectType: "performance",
     status: "active",
     startDate: "2025-03-01",
     updatedDate: "2026-03-15",
@@ -104,6 +107,7 @@ export const projects: Project[] = [
       "This website is itself an ongoing project. Built with React 19, TanStack Router, Tailwind CSS v4, and Three.js for the interactive 3D elements, it serves as both a portfolio and a playground for trying new web technologies. The YouTube background video integration, frosted glass cards, and aurora blob animations are all part of the experimental design approach. Everything is open source and deployed via GitHub Pages with automated CI/CD.",
     // heroImage and thumbnail are auto-generated via shader when not provided
     tags: ["web-dev", "react", "three-js", "open-source"],
+    projectType: "software",
     status: "active",
     startDate: "2025-09-01",
     updatedDate: "2026-03-26",

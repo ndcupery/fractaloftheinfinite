@@ -7,6 +7,7 @@ tags:
   - react
   - three-js
   - open-source
+projectType: software
 status: active
 startDate: 2025-09-01
 ---
