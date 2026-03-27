@@ -101,3 +101,106 @@ select {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
+
+/* Update preview card — fade out at the bottom */
+.update-preview {
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+.update-preview p {
+  margin: 0;
+}
+
+.update-preview img {
+  display: none;
+}
+
+/* Parsed markdown content in update modal */
+.update-content h1,
+.update-content h2,
+.update-content h3,
+.update-content h4 {
+  color: var(--color-text);
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.update-content h1 { font-size: 1.5rem; }
+.update-content h2 { font-size: 1.25rem; }
+.update-content h3 { font-size: 1.1rem; }
+
+.update-content p {
+  margin-bottom: 1em;
+}
+
+.update-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.update-content a:hover {
+  color: var(--color-accent);
+}
+
+.update-content ul,
+.update-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.update-content ul { list-style: disc; }
+.update-content ol { list-style: decimal; }
+
+.update-content li {
+  margin-bottom: 0.25em;
+}
+
+.update-content code {
+  background: var(--color-surface-light);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.update-content pre {
+  background: var(--color-surface-light);
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.update-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.update-content blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1em;
+  margin-left: 0;
+  margin-bottom: 1em;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.update-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+.update-content hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1.5em 0;
+}
+
+.update-content strong {
+  color: var(--color-text);
+  font-weight: 600;
+}

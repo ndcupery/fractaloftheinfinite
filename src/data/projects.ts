@@ -1,3 +1,5 @@
+import { getProjectMedia } from "@/lib/loadMedia";
+
 export type ProjectStatus = "active" | "completed" | "archived";
 export type ProjectType = "3d" | "software" | "performance" | "artwork" | "diy";
 
@@ -21,7 +23,6 @@ export interface Project {
   status: ProjectStatus;
   startDate: string;
   updatedDate?: string;
-  media: MediaItem[];
 }
 
 // Helper for referencing assets in public/content/projects/
@@ -53,26 +54,6 @@ export const projects: Project[] = [
     status: "active",
     startDate: "2025-03-01",
     updatedDate: "2026-03-15",
-    media: [
-      {
-        type: "image",
-        src: projectAsset("phazer-visuals-2026/media/festival-crowd-lasers.jpg"),
-        alt: "Festival crowd with laser visuals",
-        tags: ["festival", "laser"],
-      },
-      {
-        type: "image",
-        src: projectAsset("phazer-visuals-2026/media/stage-projection-setup.jpg"),
-        alt: "Stage projection mapping setup",
-        tags: ["projection", "setup"],
-      },
-      {
-        type: "image",
-        src: projectAsset("phazer-visuals-2026/media/live-vj-generative.jpg"),
-        alt: "Live VJ performance with generative art",
-        tags: ["live-visuals", "generative"],
-      },
-    ],
   },
   {
     slug: "phazer-labs-website",
@@ -87,20 +68,6 @@ export const projects: Project[] = [
     status: "active",
     startDate: "2025-09-01",
     updatedDate: "2026-03-26",
-    media: [
-      {
-        type: "image",
-        src: projectAsset("phazer-labs-website/media/code-editor-react.jpg"),
-        alt: "Code editor with React components",
-        tags: ["web-dev", "code"],
-      },
-      {
-        type: "image",
-        src: projectAsset("phazer-labs-website/media/3d-rendering-experiments.jpg"),
-        alt: "3D rendering experiments",
-        tags: ["three-js", "generative"],
-      },
-    ],
   },
 ];
 
@@ -116,7 +83,7 @@ export function getAllTags(projectList: Project[]): string[] {
 
 export function getAllMedia(): FlattenedMediaItem[] {
   return projects.flatMap((p) =>
-    p.media.map((m) => ({
+    getProjectMedia(p.slug).map((m) => ({
       ...m,
       projectSlug: p.slug,
       projectTitle: p.title,
