@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Calendar, Circle, MessageSquare, X } from "lucide-react";
+import { ArrowLeft, Calendar, ChevronRight, Circle, MessageSquare, X } from "lucide-react";
 import { Route } from "@/routes/gallery/$projectSlug";
 import { getProjectBySlug } from "@/data/projects";
 import { ProjectHero } from "@/components/ui/ProjectVisual";
 import { getProjectUpdates } from "@/lib/loadUpdates";
+import { getProjectMedia } from "@/lib/loadMedia";
 import type { ProjectUpdate } from "@/lib/loadUpdates";
 import type { ProjectStatus } from "@/data/projects";
 import { Button } from "@/components/ui/button";
@@ -56,6 +57,7 @@ export function ProjectDetail() {
 
   const status = statusLabels[project.status];
   const updates = getProjectUpdates(project.slug);
+  const media = getProjectMedia(project.slug);
 
   return (
     <>
@@ -108,7 +110,7 @@ export function ProjectDetail() {
         </section>
 
         {/* Media Gallery */}
-        {project.media.length > 0 && (
+        {media.length > 0 && (
           <section className="mx-auto max-w-6xl mb-20">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -125,7 +127,7 @@ export function ProjectDetail() {
               viewport={{ once: true }}
               className="grid grid-cols-2 md:grid-cols-3 gap-4"
             >
-              {project.media.map((mediaItem, index) => (
+              {media.map((mediaItem, index) => (
                 <motion.div key={index} variants={item}>
                   {mediaItem.type === "image" ? (
                     <button
@@ -176,17 +178,22 @@ export function ProjectDetail() {
                   key={update.date}
                   variants={item}
                   onClick={() => setActiveUpdate(update)}
-                  className="w-full text-left glass rounded-2xl p-6 border border-border cursor-pointer hover:border-primary/20 hover:shadow-[0_0_30px_rgba(0,229,255,0.08)] transition-all duration-300"
+                  className="group w-full text-left glass rounded-2xl p-6 border border-border cursor-pointer hover:border-primary/30 hover:shadow-[0_0_40px_rgba(0,229,255,0.12)] hover:scale-[1.01] transition-all duration-300"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <span className="px-3 py-1 rounded-full bg-surface-light text-xs font-mono text-text-muted">
                       {update.date}
                     </span>
-                    <h3 className="font-semibold text-text">{update.title}</h3>
+                    <h3 className="font-semibold text-text flex-1">{update.title}</h3>
+                    <ChevronRight
+                      size={16}
+                      className="text-text-muted opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary transition-all duration-300"
+                    />
                   </div>
-                  <p className="text-sm text-text-muted leading-relaxed line-clamp-2">
-                    {update.body}
-                  </p>
+                  <div
+                    className="relative max-h-24 overflow-hidden text-sm text-text-muted leading-relaxed update-preview"
+                    dangerouslySetInnerHTML={{ __html: update.bodyHtml }}
+                  />
                 </motion.button>
               ))}
             </motion.div>
@@ -196,7 +203,7 @@ export function ProjectDetail() {
 
       {/* Image Lightbox */}
       <AnimatePresence>
-        {lightboxIndex !== null && project.media[lightboxIndex] && (
+        {lightboxIndex !== null && media[lightboxIndex] && (
           <>
             <motion.div
               initial={{ opacity: 0 }}
@@ -220,8 +227,8 @@ export function ProjectDetail() {
                 <X size={24} />
               </button>
               <img
-                src={project.media[lightboxIndex].src}
-                alt={project.media[lightboxIndex].alt}
+                src={media[lightboxIndex].src}
+                alt={media[lightboxIndex].alt}
                 className="max-w-full max-h-[85vh] rounded-2xl object-contain"
               />
             </motion.div>
@@ -269,9 +276,10 @@ export function ProjectDetail() {
                     <h2 className="text-2xl font-bold text-text mb-6">
                       {activeUpdate.title}
                     </h2>
-                    <div className="text-text-muted leading-relaxed whitespace-pre-wrap">
-                      {activeUpdate.body}
-                    </div>
+                    <div
+                      className="update-content text-text-muted leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: activeUpdate.bodyHtml }}
+                    />
                   </div>
                 </div>
               </div>
