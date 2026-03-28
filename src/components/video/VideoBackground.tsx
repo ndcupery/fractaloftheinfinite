@@ -24,7 +24,7 @@ export function VideoBackground({ sources }: VideoBackgroundProps) {
   const targetRateRef = useRef(MIN_RATE);
   const currentRateRef = useRef(MIN_RATE);
   const lastScrollY = useRef(typeof window !== "undefined" ? window.scrollY : 0);
-  const lastScrollTime = useRef(performance.now());
+  const lastScrollTime = useRef(0);
   const rafRef = useRef(0);
 
   const cleanupListeners = useCallback(() => {
