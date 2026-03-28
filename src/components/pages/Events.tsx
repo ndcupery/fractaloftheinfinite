@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { MapPin, Play, X } from "lucide-react";
+import { MapPin, X } from "lucide-react";
 import { EventThumbnail } from "@/components/ui/EventVisual";
+import { VideoThumbnail } from "@/components/ui/VideoThumbnail";
 import { events, isUpcoming, getAllEventMedia } from "@/data/events";
 import { getEventMedia } from "@/lib/loadEventMedia";
 import type { FlattenedEventMediaItem } from "@/data/events";
@@ -18,9 +19,9 @@ const allVideos = allEventMedia.filter((m) => m.type === "video");
 type EventFilter = "upcoming" | "past" | "all" | "photos" | "videos";
 
 const eventFilters: { value: EventFilter; label: string }[] = [
+  { value: "all", label: "All Events" },
   { value: "upcoming", label: "Upcoming" },
   { value: "past", label: "Past" },
-  { value: "all", label: "All Events" },
   { value: "photos", label: "Photos" },
   { value: "videos", label: "Videos" },
 ];
@@ -147,10 +148,10 @@ export function EventsPage() {
               {isMediaTab &&
                 mediaItems.map((m) => (
                   <motion.div key={`${m.eventSlug}-${m.filename}`} variants={item} layout>
-                    <div className="glass rounded-xl overflow-hidden group cursor-pointer">
+                    <div className="glass rounded-xl overflow-hidden">
                       <div className="relative aspect-video overflow-hidden">
                         {m.type === "image" ? (
-                          <button onClick={() => setLightboxItem(m)} className="block w-full h-full">
+                          <button onClick={() => setLightboxItem(m)} className="block w-full h-full group cursor-pointer">
                             <img
                               src={m.src}
                               alt={m.alt}
@@ -159,16 +160,13 @@ export function EventsPage() {
                             />
                           </button>
                         ) : (
-                          <video src={m.src} controls className="w-full h-full object-cover" />
+                          <VideoThumbnail
+                            src={m.src}
+                            alt={m.alt}
+                            onClick={() => setLightboxItem(m)}
+                          />
                         )}
-                        {m.type === "video" && (
-                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="w-12 h-12 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center">
-                              <Play size={20} className="text-primary ml-0.5" fill="currentColor" />
-                            </div>
-                          </div>
-                        )}
-                        <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-background/80 to-transparent">
+                        <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-background/80 to-transparent pointer-events-none">
                           <span className="text-xs text-text-muted font-mono truncate block">
                             {m.eventTitle}
                           </span>
@@ -211,11 +209,21 @@ export function EventsPage() {
               >
                 <X size={24} />
               </button>
-              <img
-                src={lightboxItem.src}
-                alt={lightboxItem.alt}
-                className="max-w-full max-h-[85vh] rounded-2xl object-contain"
-              />
+              {lightboxItem.type === "image" ? (
+                <img
+                  src={lightboxItem.src}
+                  alt={lightboxItem.alt}
+                  className="max-w-full max-h-[85vh] rounded-2xl object-contain"
+                />
+              ) : (
+                <video
+                  src={lightboxItem.src}
+                  controls
+                  autoPlay
+                  className="max-w-full max-h-[85vh] rounded-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
             </motion.div>
           </>
         )}
