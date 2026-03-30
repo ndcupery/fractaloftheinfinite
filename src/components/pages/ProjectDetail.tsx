@@ -82,16 +82,30 @@ export function ProjectDetail() {
     <>
       {/* Full-bleed Hero */}
       {project.heroImage ? (
-        <div
-          className="relative w-full h-[60vh] -mt-[80px] bg-cover bg-center"
-          style={{ backgroundImage: `url(${project.heroImage})` }}
-        >
+        <div className="relative w-full h-[60vh] -mt-[80px]">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${project.heroImage})`,
+              maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+            }}
+          />
           <HeroOverlay project={project} status={status} />
         </div>
       ) : (
-        <ProjectHero slug={project.slug} projectType={project.projectType} className="w-full h-[50vh] -mt-[80px]">
+        <div className="relative w-full h-[50vh] -mt-[80px]">
+          <ProjectHero
+            slug={project.slug}
+            projectType={project.projectType}
+            className="absolute inset-0"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+            }}
+          />
           <HeroOverlay project={project} status={status} />
-        </ProjectHero>
+        </div>
       )}
 
       <div className="px-6 pb-20">
@@ -304,7 +318,7 @@ function HeroOverlay({
 }) {
   return (
     <>
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 px-6 pb-10">
         <div className="mx-auto max-w-6xl">
           <Link

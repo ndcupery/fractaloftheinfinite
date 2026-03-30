@@ -41,16 +41,17 @@ interface ProjectHeroProps {
   slug: string;
   projectType?: ProjectType;
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
-export function ProjectHero({ slug, projectType, className = "", children }: ProjectHeroProps) {
+export function ProjectHero({ slug, projectType, className = "", style, children }: ProjectHeroProps) {
   const src = useMemo(() => renderHero(slug, projectType), [slug, projectType]);
 
   return (
     <div
       className={`relative bg-cover bg-center ${className}`}
-      style={{ backgroundImage: `url(${src})` }}
+      style={{ backgroundImage: `url(${src})`, ...style }}
     >
       {children}
     </div>

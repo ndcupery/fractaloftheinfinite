@@ -35,16 +35,17 @@ export function EventThumbnail({ slug, title, className = "" }: EventThumbnailPr
 interface EventHeroProps {
   slug: string;
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
-export function EventHero({ slug, className = "", children }: EventHeroProps) {
+export function EventHero({ slug, className = "", style, children }: EventHeroProps) {
   const src = useMemo(() => renderHero(slug, "performance"), [slug]);
 
   return (
     <div
       className={`relative bg-cover bg-center ${className}`}
-      style={{ backgroundImage: `url(${src})` }}
+      style={{ backgroundImage: `url(${src})`, ...style }}
     >
       {children}
     </div>
