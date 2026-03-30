@@ -10,7 +10,7 @@ tags:
   - bass-music
 ---
 
-# Breaker's Paradise 17: A Night of Pure Drum and Bass Energy
+# A Night of Pure Drum and Bass Energy
 
 On April 8th, the Northeast Minneapolis music scene will once again come alive with the thunderous beats and rolling basslines that have made Breaker's Paradise a staple of the local DNB community. Breaker's Paradise 17 marks another chapter in this monthly celebration of drum and bass culture, bringing together enthusiasts, dancers, and music lovers at the intimate Terminal Bar NE.
 
