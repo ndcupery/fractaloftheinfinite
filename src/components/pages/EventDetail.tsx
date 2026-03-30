@@ -80,16 +80,29 @@ export function EventDetail() {
     <>
       {/* Full-bleed Hero */}
       {heroImageSrc ? (
-        <div
-          className="relative w-full h-[60vh] -mt-[80px] bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImageSrc})` }}
-        >
+        <div className="relative w-full h-[60vh] -mt-[80px]">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${heroImageSrc})`,
+              maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+            }}
+          />
           <HeroOverlay event={event} upcoming={upcoming} eventLinks={eventLinks} />
         </div>
       ) : (
-        <EventHero slug={event.slug} className="w-full h-[50vh] -mt-[80px]">
+        <div className="relative w-full h-[50vh] -mt-[80px]">
+          <EventHero
+            slug={event.slug}
+            className="absolute inset-0"
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+            }}
+          />
           <HeroOverlay event={event} upcoming={upcoming} eventLinks={eventLinks} />
-        </EventHero>
+        </div>
       )}
 
       <div className="px-6 pb-20">
@@ -244,7 +257,7 @@ function HeroOverlay({
 }) {
   return (
     <>
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 px-6 pb-10">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
