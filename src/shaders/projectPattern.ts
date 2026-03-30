@@ -99,21 +99,33 @@ export const fragmentShader = /* glsl */ `
 
   // --- Style 0: 3D Angular/Faceted ---
   float style3D(vec2 p, float s1, float s2, float s3) {
-    // Voronoi cells at two scales
-    float v1 = voronoi(p * 3.0 + vec2(s1 * 10.0, s2 * 7.0));
-    float v2 = voronoi(p * 6.0 + vec2(s2 * 5.0, s3 * 12.0));
+    // Domain-warped coordinates for organic distortion of the geometric pattern
+    vec2 warp = vec2(
+      fbm(p * 1.5 + vec2(s1 * 7.0, s2 * 3.0), s1),
+      fbm(p * 1.5 + vec2(s2 * 5.0, s3 * 9.0), s2)
+    );
+    vec2 wp = p + warp * 0.8;
 
-    // Combine cells with sharp edges
-    float cells = smoothstep(0.0, 0.15, v1) * 0.7 + smoothstep(0.0, 0.1, v2) * 0.3;
+    // Voronoi cells at two scales — centered around 0 for full color range
+    float v1 = voronoi(wp * 3.5 + vec2(s1 * 10.0, s2 * 7.0));
+    float v2 = voronoi(wp * 7.0 + vec2(s2 * 5.0, s3 * 12.0));
 
-    // Subtle grid overlay
-    vec2 grid = abs(fract(p * 8.0 + vec2(s3 * 3.0)) - 0.5);
+    // Map voronoi to signed range so output spans negative to positive
+    float cells = (v1 * 0.65 + v2 * 0.35) * 2.0 - 1.0;
+
+    // Faceted edge highlights — bright ridges between cells
+    float edge1 = 1.0 - smoothstep(0.0, 0.1, abs(v1 - 0.4));
+    float edge2 = 1.0 - smoothstep(0.0, 0.07, abs(v2 - 0.3));
+    float edges = max(edge1, edge2) * 0.6;
+
+    // Grid overlay with warp
+    vec2 grid = abs(fract(wp * 8.0 + vec2(s3 * 3.0)) - 0.5);
     float gridLines = 1.0 - smoothstep(0.0, 0.04, min(grid.x, grid.y));
 
-    // Add noise modulation for depth
-    float n = fbm(p * 2.0, s1) * 0.3 + 0.5;
+    // Noise depth variation
+    float n = fbm(p * 2.0, s3);
 
-    return mix(cells, cells + gridLines * 0.2, n);
+    return cells + edges + gridLines * 0.2 + n * 0.3;
   }
 
   // --- Style 1: Software Digital/Grid ---

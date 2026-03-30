@@ -5,7 +5,10 @@
       "Bash(npx tsc:*)",
       "Bash(mkdir -p \"src/content/projects/modular-projection-stage-system/media\" \"src/content/projects/modular-projection-stage-system/updates\")",
       "Bash(touch \"src/content/projects/modular-projection-stage-system/media/.gitkeep\" \"src/content/projects/modular-projection-stage-system/updates/.gitkeep\")",
-      "Bash(find /c/Users/hundo/Documents/GitHub/Phazer Labs/phazerlabs.com/wattrobert.github.io/src -type f \\\\\\(-name *.ts -o -name *.tsx \\\\\\))"
+      "Bash(find /c/Users/hundo/Documents/GitHub/Phazer Labs/phazerlabs.com/wattrobert.github.io/src -type f \\\\\\(-name *.ts -o -name *.tsx \\\\\\))",
+      "Bash(find /c/Users/hundo/Documents/GitHub/Phazer Labs/phazerlabs.com/wattrobert.github.io/src -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(node -e \":*)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
