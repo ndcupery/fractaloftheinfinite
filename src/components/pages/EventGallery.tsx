@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { VideoThumbnail } from "@/components/ui/VideoThumbnail";
-import { Lightbox } from "@/components/ui/Lightbox";
+import { Lightbox } from "@/components/ui/lightbox";
 import { Route } from "@/routes/events/$eventSlug/gallery";
 import { getEventBySlug } from "@/data/events";
 import { getEventMedia } from "@/lib/loadEventMedia";

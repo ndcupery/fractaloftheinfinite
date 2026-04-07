@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { EventThumbnail } from "@/components/ui/EventVisual";
 import { VideoThumbnail } from "@/components/ui/VideoThumbnail";
-import { Lightbox } from "@/components/ui/Lightbox";
+import { Lightbox } from "@/components/ui/lightbox";
 import { events, isUpcoming, getAllEventMedia } from "@/data/events";
 import { getEventMedia } from "@/lib/loadEventMedia";
 import type { FlattenedEventMediaItem } from "@/data/events";

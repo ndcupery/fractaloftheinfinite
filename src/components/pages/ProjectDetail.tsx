@@ -10,7 +10,7 @@ import {
   FlaskConical,
 } from "lucide-react";
 import { VideoThumbnail } from "@/components/ui/VideoThumbnail";
-import { Lightbox } from "@/components/ui/Lightbox";
+import { Lightbox } from "@/components/ui/lightbox";
 import { Route } from "@/routes/laboratory/$projectSlug/index";
 import { getProjectBySlug, getProjectDescriptionHtml } from "@/lib/loadProjects";
 import { ProjectHero } from "@/components/ui/ProjectVisual";
