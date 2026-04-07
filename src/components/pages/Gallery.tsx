@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { Circle } from "lucide-react";
 import { ProjectThumbnail } from "@/components/ui/ProjectVisual";
 import { VideoThumbnail } from "@/components/ui/VideoThumbnail";
-import { Lightbox } from "@/components/ui/Lightbox";
+import { Lightbox } from "@/components/ui/lightbox";
 import { projects, getAllTags, getAllMedia } from "@/lib/loadProjects";
 import type { ProjectStatus, FlattenedMediaItem } from "@/data/projects";
 
