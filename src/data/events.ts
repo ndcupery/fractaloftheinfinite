@@ -92,4 +92,16 @@ export const events: Event[] = [
     city: "Minneapolis, MN",
     tags: ["live-visuals", "vj", "bass-music"],
   },
+  {
+    slug: "wub-club-afterparty-2026",
+    title: "Wub Club Afterparty",
+    abstract:
+      "Afterparty with a BANGIN' Sublab soundsystem, string art installations, live visuals, and an interactive H.A.C. photo booth at Oga Madam's African Kitchen.",
+    eventDate: "2026-04-11",
+    venue: "Oga Madam's African Kitchen",
+    city: "Brooklyn Park, MN",
+    eventUrl:
+      "https://events.ticketleap.com/tickets/akasha-civita/wub-club-anniversary-special",
+    tags: ["afterparty", "bass-music", "live-visuals", "hac"],
+  },
 ];
