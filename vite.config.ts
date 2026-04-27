@@ -18,31 +18,7 @@ function sitemapPlugin(): Plugin {
         { path: "/contact", priority: "0.9", changefreq: "monthly" },
       ];
 
-      // Extract project slugs from content directories
-      const projectDirs = fs.readdirSync(
-        path.resolve(__dirname, "src/content/projects"),
-        { withFileTypes: true },
-      );
-      const projectRoutes = projectDirs
-        .filter(
-          (d) =>
-            d.isDirectory() &&
-            fs.existsSync(
-              path.resolve(
-                __dirname,
-                "src/content/projects",
-                d.name,
-                "OVERVIEW.md",
-              ),
-            ),
-        )
-        .map((d) => ({
-          path: `/laboratory/${d.name}`,
-          priority: "0.7",
-          changefreq: "monthly",
-        }));
-
-      const routes = [...staticRoutes, ...projectRoutes];
+      const routes = [...staticRoutes];
       const today = new Date().toISOString().split("T")[0];
 
       const xml = [

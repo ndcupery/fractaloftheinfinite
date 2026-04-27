@@ -17,12 +17,6 @@ export function Footer() {
               About
             </Link>
             <Link
-              to="/laboratory"
-              className="hover:text-primary transition-colors"
-            >
-              Laboratory
-            </Link>
-            <Link
               to="/events"
               className="hover:text-primary transition-colors"
             >
