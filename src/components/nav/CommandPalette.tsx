@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Home, User, Image, Mail, ArrowRight } from "lucide-react";
+import { Search, Home, User, Mail, ArrowRight } from "lucide-react";
 
 const commands = [
   {
@@ -17,13 +17,6 @@ const commands = [
     description: "Learn about Sense Amylia",
     icon: User,
     to: "/about" as const,
-  },
-  {
-    id: "laboratory",
-    label: "Laboratory",
-    description: "Browse projects and experiments",
-    icon: Image,
-    to: "/laboratory" as const,
   },
   {
     id: "booking",

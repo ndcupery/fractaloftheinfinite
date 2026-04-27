@@ -13,11 +13,8 @@ import { Route as QuoteRequestRouteImport } from './routes/quote-request'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LaboratoryIndexRouteImport } from './routes/laboratory/index'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
-import { Route as LaboratoryProjectSlugRouteRouteImport } from './routes/laboratory/$projectSlug/route'
 import { Route as EventsEventSlugRouteRouteImport } from './routes/events/$eventSlug/route'
-import { Route as LaboratoryProjectSlugIndexRouteImport } from './routes/laboratory/$projectSlug/index'
 import { Route as EventsEventSlugIndexRouteImport } from './routes/events/$eventSlug/index'
 import { Route as EventsEventSlugGalleryRouteImport } from './routes/events/$eventSlug/gallery'
 
@@ -41,33 +38,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LaboratoryIndexRoute = LaboratoryIndexRouteImport.update({
-  id: '/laboratory/',
-  path: '/laboratory/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const EventsIndexRoute = EventsIndexRouteImport.update({
   id: '/events/',
   path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LaboratoryProjectSlugRouteRoute =
-  LaboratoryProjectSlugRouteRouteImport.update({
-    id: '/laboratory/$projectSlug',
-    path: '/laboratory/$projectSlug',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const EventsEventSlugRouteRoute = EventsEventSlugRouteRouteImport.update({
   id: '/events/$eventSlug',
   path: '/events/$eventSlug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LaboratoryProjectSlugIndexRoute =
-  LaboratoryProjectSlugIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => LaboratoryProjectSlugRouteRoute,
-  } as any)
 const EventsEventSlugIndexRoute = EventsEventSlugIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -85,12 +65,9 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/quote-request': typeof QuoteRequestRoute
   '/events/$eventSlug': typeof EventsEventSlugRouteRouteWithChildren
-  '/laboratory/$projectSlug': typeof LaboratoryProjectSlugRouteRouteWithChildren
   '/events/': typeof EventsIndexRoute
-  '/laboratory/': typeof LaboratoryIndexRoute
   '/events/$eventSlug/gallery': typeof EventsEventSlugGalleryRoute
   '/events/$eventSlug/': typeof EventsEventSlugIndexRoute
-  '/laboratory/$projectSlug/': typeof LaboratoryProjectSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -98,10 +75,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/quote-request': typeof QuoteRequestRoute
   '/events': typeof EventsIndexRoute
-  '/laboratory': typeof LaboratoryIndexRoute
   '/events/$eventSlug/gallery': typeof EventsEventSlugGalleryRoute
   '/events/$eventSlug': typeof EventsEventSlugIndexRoute
-  '/laboratory/$projectSlug': typeof LaboratoryProjectSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -110,12 +85,9 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/quote-request': typeof QuoteRequestRoute
   '/events/$eventSlug': typeof EventsEventSlugRouteRouteWithChildren
-  '/laboratory/$projectSlug': typeof LaboratoryProjectSlugRouteRouteWithChildren
   '/events/': typeof EventsIndexRoute
-  '/laboratory/': typeof LaboratoryIndexRoute
   '/events/$eventSlug/gallery': typeof EventsEventSlugGalleryRoute
   '/events/$eventSlug/': typeof EventsEventSlugIndexRoute
-  '/laboratory/$projectSlug/': typeof LaboratoryProjectSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,12 +97,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/quote-request'
     | '/events/$eventSlug'
-    | '/laboratory/$projectSlug'
     | '/events/'
-    | '/laboratory/'
     | '/events/$eventSlug/gallery'
     | '/events/$eventSlug/'
-    | '/laboratory/$projectSlug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -138,10 +107,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/quote-request'
     | '/events'
-    | '/laboratory'
     | '/events/$eventSlug/gallery'
     | '/events/$eventSlug'
-    | '/laboratory/$projectSlug'
   id:
     | '__root__'
     | '/'
@@ -149,12 +116,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/quote-request'
     | '/events/$eventSlug'
-    | '/laboratory/$projectSlug'
     | '/events/'
-    | '/laboratory/'
     | '/events/$eventSlug/gallery'
     | '/events/$eventSlug/'
-    | '/laboratory/$projectSlug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -163,9 +127,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   QuoteRequestRoute: typeof QuoteRequestRoute
   EventsEventSlugRouteRoute: typeof EventsEventSlugRouteRouteWithChildren
-  LaboratoryProjectSlugRouteRoute: typeof LaboratoryProjectSlugRouteRouteWithChildren
   EventsIndexRoute: typeof EventsIndexRoute
-  LaboratoryIndexRoute: typeof LaboratoryIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -198,25 +160,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/laboratory/': {
-      id: '/laboratory/'
-      path: '/laboratory'
-      fullPath: '/laboratory/'
-      preLoaderRoute: typeof LaboratoryIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/events/': {
       id: '/events/'
       path: '/events'
       fullPath: '/events/'
       preLoaderRoute: typeof EventsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/laboratory/$projectSlug': {
-      id: '/laboratory/$projectSlug'
-      path: '/laboratory/$projectSlug'
-      fullPath: '/laboratory/$projectSlug'
-      preLoaderRoute: typeof LaboratoryProjectSlugRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events/$eventSlug': {
@@ -225,13 +173,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/events/$eventSlug'
       preLoaderRoute: typeof EventsEventSlugRouteRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/laboratory/$projectSlug/': {
-      id: '/laboratory/$projectSlug/'
-      path: '/'
-      fullPath: '/laboratory/$projectSlug/'
-      preLoaderRoute: typeof LaboratoryProjectSlugIndexRouteImport
-      parentRoute: typeof LaboratoryProjectSlugRouteRoute
     }
     '/events/$eventSlug/': {
       id: '/events/$eventSlug/'
@@ -263,29 +204,13 @@ const EventsEventSlugRouteRouteChildren: EventsEventSlugRouteRouteChildren = {
 const EventsEventSlugRouteRouteWithChildren =
   EventsEventSlugRouteRoute._addFileChildren(EventsEventSlugRouteRouteChildren)
 
-interface LaboratoryProjectSlugRouteRouteChildren {
-  LaboratoryProjectSlugIndexRoute: typeof LaboratoryProjectSlugIndexRoute
-}
-
-const LaboratoryProjectSlugRouteRouteChildren: LaboratoryProjectSlugRouteRouteChildren =
-  {
-    LaboratoryProjectSlugIndexRoute: LaboratoryProjectSlugIndexRoute,
-  }
-
-const LaboratoryProjectSlugRouteRouteWithChildren =
-  LaboratoryProjectSlugRouteRoute._addFileChildren(
-    LaboratoryProjectSlugRouteRouteChildren,
-  )
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   QuoteRequestRoute: QuoteRequestRoute,
   EventsEventSlugRouteRoute: EventsEventSlugRouteRouteWithChildren,
-  LaboratoryProjectSlugRouteRoute: LaboratoryProjectSlugRouteRouteWithChildren,
   EventsIndexRoute: EventsIndexRoute,
-  LaboratoryIndexRoute: LaboratoryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
